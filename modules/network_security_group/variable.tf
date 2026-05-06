@@ -50,37 +50,3 @@ variable "network_security_group_tags" {
   type = map(string)
 }
 
-
-variable "monitor_diagnostic_setting_eventhub_name" {
-  type    = string
-  default = null
-}
-variable "monitor_diagnostic_setting_eventhub_authorization_rule_id" {
-  type    = string
-  default = null
-}
-
-variable "monitor_diagnostic_setting_log_analytics_workspace_id" {
-  type    = string
-  default = null
-}
-
-variable "monitor_diagnostic_setting_storage_account_id" {
-  type    = string
-  default = null
-}
-
-variable "monitor_diagnostic_setting_partner_solution_id" {
-  type    = string
-  default = null
-}
-
-variable "storage_account_id" {
-  type    = string
-  default = null
-}
-
-variable "partner_solution_id" {
-  type    = string
-  default = null
-}

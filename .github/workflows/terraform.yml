@@ -38,6 +38,20 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Set Azure SP environment variables
+        run: |
+          python - <<'PY' > /tmp/azure-auth.env
+import os, json
+creds = json.loads(os.environ['AZURE_CREDENTIALS'])
+with open(os.environ['GITHUB_ENV'], 'a') as github_env:
+    github_env.write(f"ARM_CLIENT_ID={creds['clientId']}\n")
+    github_env.write(f"ARM_CLIENT_SECRET={creds['clientSecret']}\n")
+    github_env.write(f"ARM_TENANT_ID={creds['tenantId']}\n")
+    github_env.write(f"ARM_SUBSCRIPTION_ID={creds['subscriptionId']}\n")
+PY
+        env:
+          AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Terraform Init
         working-directory: code
         run: |
@@ -78,6 +92,20 @@ jobs:
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Set Azure SP environment variables
+        run: |
+          python - <<'PY'
+import os, json
+creds = json.loads(os.environ['AZURE_CREDENTIALS'])
+with open(os.environ['GITHUB_ENV'], 'a') as github_env:
+    github_env.write(f"ARM_CLIENT_ID={creds['clientId']}\n")
+    github_env.write(f"ARM_CLIENT_SECRET={creds['clientSecret']}\n")
+    github_env.write(f"ARM_TENANT_ID={creds['tenantId']}\n")
+    github_env.write(f"ARM_SUBSCRIPTION_ID={creds['subscriptionId']}\n")
+PY
+        env:
+          AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Download plan artifact
         uses: actions/download-artifact@v4

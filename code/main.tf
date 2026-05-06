@@ -17,9 +17,6 @@ module "vnet" {
   virtual_network_address_space                             = var.virtual_network_address_space
   virtual_network_location                                  = module.resource_group.resource_group_location
   resource_group_name                                       = module.resource_group.resource_group_name
-  monitor_diagnostic_setting_eventhub_name                  = null
-  monitor_diagnostic_setting_eventhub_authorization_rule_id = null
-  monitor_diagnostic_setting_log_analytics_workspace_id     = null
   tags = merge(
     var.common_tags_primary,
     {
