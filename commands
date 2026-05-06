@@ -1,0 +1,5 @@
+terraform init -backend-config="./env/sandbox/backend.hcl"
+
+terraform plan -var-file="./env/sandbox/terraform.tfvars"
+
+terraform apply -var-file="./env/sandbox/terraform.tfvars" --auto-approve
