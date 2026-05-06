@@ -39,14 +39,16 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Terraform Init
+        working-directory: code
         run: |
           terraform init \
-            -backend-config=code/env/${{ matrix.env }}/backend.hcl
+            -backend-config=env/${{ matrix.env }}/backend.hcl
 
       - name: Terraform Plan
+        working-directory: code
         run: |
           terraform plan \
-            -var-file=code/env/${{ matrix.env }}/terraform.tfvars \
+            -var-file=env/${{ matrix.env }}/terraform.tfvars \
             -out=tfplan-${{ matrix.env }}
 
       - name: Upload plan artifact
@@ -84,6 +86,7 @@ jobs:
           path: .
 
       - name: Apply Terraform
+        working-directory: code
         run: |
           terraform apply -auto-approve tfplan-${{ matrix.env }}
 
