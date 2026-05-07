@@ -81,7 +81,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: tfplan-${{ matrix.env }}
-          path: tfplan-${{ matrix.env }}
+          path: code/tfplan-${{ matrix.env }}
 
   apply:
     needs: plan
