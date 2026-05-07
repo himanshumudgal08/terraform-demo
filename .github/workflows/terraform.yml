@@ -61,14 +61,15 @@ jobs:
       - name: Run TFSec Security Scan
         uses: aquasecurity/tfsec-action@v1.0.2
         with:
-          working_directory: code
+          working_directory: .
+          scan_dir: code
           sarif_file: tfsec.sarif
 
       - name: Upload TFSec results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         if: always()
         with:
-          sarif_file: code/tfsec.sarif
+          sarif_file: tfsec.sarif
 
       - name: Terraform Plan
         working-directory: code
