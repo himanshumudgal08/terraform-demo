@@ -7,7 +7,7 @@ module "storage_account" {
   # storage_account_account_replication_type                  = var.storage_account_account_replication_type
   storage_account_cross_tenant_replication_enabled          = true
   tags = merge(
-    var.common_tags_primary,
+    var.common_tags,
     {
       Name          = "stpoc${local.common_name_storage}001"
       resource_type = "Storage Account"

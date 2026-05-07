@@ -2,31 +2,19 @@
 # #############################################################################################################
 # Core - Resource Group
 # #############################################################################################################
-location_primary         = "uksouth"
-location_primary_short   = "uks"
-location_secondary       = "ukwest"
-location_secondary_short = "ukw"
+location         = "uksouth"
+location_short   = "uks"
 environment              = "dev"
 application              = "vm"
 client_name              = "ks"
 
-common_tags_primary = {
+common_tags = {
   environment = "dev"
   app         = "PLS"
   costing     = "IT"
   criticality = "High"
   department  = "IT"
   location    = "UKS"
-  deployment  = "terraform"
-}
-
-common_tags_secondary = {
-  environment = "dev"
-  app         = "PLS"
-  costing     = "IT"
-  criticality = "high"
-  department  = "IT"
-  location    = "UKW"
   deployment  = "terraform"
 }
 

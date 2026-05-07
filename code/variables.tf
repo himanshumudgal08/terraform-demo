@@ -1,13 +1,8 @@
 
 # #############################################################################################################
-variable "common_tags_primary" {
+variable "common_tags" {
   type = map(string)
 }
-
-variable "common_tags_secondary" {
-  type = map(string)
-}
-
 variable "client_name" {
   type = string
 }
@@ -25,22 +20,12 @@ variable "failover_enabled" {
   default = false
 }
 
-variable "location_primary" {
+variable "location" {
   description = "The Azure Region in which to create the resources"
   type        = string
 }
 
-variable "location_secondary" {
-  description = "The Azure Region in which to create the resources"
-  type        = string
-}
-
-variable "location_primary_short" {
-  description = "The Azure Region in which to create the resources"
-  type        = string
-}
-
-variable "location_secondary_short" {
+variable "location_short" {
   description = "The Azure Region in which to create the resources"
   type        = string
 }

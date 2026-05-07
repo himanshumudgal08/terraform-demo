@@ -1,9 +1,9 @@
 module "resource_group" {
   source                  = "../modules/resource_group"
   resource_group_name     = "rg-${local.common_name}-001"
-  resource_group_location = var.location_primary
+  resource_group_location = var.location
   tags = merge(
-    var.common_tags_primary,
+    var.common_tags,
     {
       Name          = "rg-${local.common_name}-001"
       resource_type = "Resource Group"
@@ -18,7 +18,7 @@ module "vnet" {
   virtual_network_location                                  = module.resource_group.resource_group_location
   resource_group_name                                       = module.resource_group.resource_group_name
   tags = merge(
-    var.common_tags_primary,
+    var.common_tags,
     {
       Name          = "vnet-${local.common_name}-001"
       resource_type = "Virtual Network"
@@ -61,7 +61,7 @@ module "bastion_nsg" {
   network_security_group_source_address_prefix          = var.network_security_group_source_address_prefix
   network_security_rule_destination_address_prefix      = var.network_security_rule_destination_address_prefix
   network_security_group_tags = merge(
-    var.common_tags_primary,
+    var.common_tags,
     {
       Name          = "bastionnsg-${local.common_name}-001-nsg"
       resource_type = "Network Security Group"

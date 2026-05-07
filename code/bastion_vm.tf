@@ -9,7 +9,7 @@ module "bastion_public_ip" {
   domain_name_label           = null
   public_ip_zones             = null
   public_ip_tags = merge(
-    var.common_tags_primary,
+    var.common_tags,
     {
       Name          = "bastionpip-${local.common_name}-001"
       resource_type = "Network Interface"
@@ -30,7 +30,7 @@ module "bastion_vm_nic" {
     }
   }
   nic_tags = merge(
-    var.common_tags_primary,
+    var.common_tags,
     {
       Name          = "bastionvm-${local.common_name}-001-nic"
       resource_type = "Network Interface"
@@ -69,7 +69,7 @@ module "linux_bastion_vm" {
   }
   virtual_machine_custom_data = null
   vm_tags = merge(
-    var.common_tags_primary,
+    var.common_tags,
     {
       Name          = "bastionvm-${local.common_name}-001"
       resource_type = "Virtual Machine"
