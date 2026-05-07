@@ -43,6 +43,8 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Set Azure SP environment variables
+        env:
+          AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
         run: |
           python - <<'PY' > /tmp/azure-auth.env
 import os, json
@@ -53,8 +55,6 @@ with open(os.environ['GITHUB_ENV'], 'a') as github_env:
     github_env.write(f"ARM_TENANT_ID={creds['tenantId']}\n")
     github_env.write(f"ARM_SUBSCRIPTION_ID={creds['subscriptionId']}\n")
 PY
-        env:
-          AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Terraform Init
         working-directory: code
