@@ -60,7 +60,8 @@ jobs:
 
       - name: Run TFSec Security Scan
         run: |
-          curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/main/scripts/install_linux.sh | bash
+          wget -qO tfsec https://github.com/aquasecurity/tfsec/releases/download/v1.28.1/tfsec-linux-amd64
+          chmod +x tfsec
           ./tfsec code -f sarif -o tfsec.sarif || true
 
       - name: Upload TFSec results to GitHub Security tab
