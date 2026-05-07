@@ -42,15 +42,15 @@ subnet_02_delegation       = {}
 
 #############################
 
-network_security_rule_name                       = ["DenyInternetInbound", "AllowAnySSHInbound"]
-network_security_rule_priority                   = [200, 100]
-network_security_rule_direction                  = ["Inbound", "Inbound"]
-network_security_rule_access                     = ["Deny", "Allow"]
-network_security_rule_protocol                   = ["*", "Tcp"]
-network_security_rule_source_port_range          = ["*", "*"]
-network_security_rule_destination_port_range     = ["*", "22"]
-network_security_group_source_address_prefix     = ["*", "49.47.69.70"]
-network_security_rule_destination_address_prefix = ["*", "*"] 
+network_security_rule_name                       = []
+network_security_rule_priority                   = []
+network_security_rule_direction                  = []
+network_security_rule_access                     = []
+network_security_rule_protocol                   = []
+network_security_rule_source_port_range          = []
+network_security_rule_destination_port_range     = []
+network_security_group_source_address_prefix     = []
+network_security_rule_destination_address_prefix = [] 
 
 
 ####################3
