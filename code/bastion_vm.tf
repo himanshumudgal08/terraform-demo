@@ -71,7 +71,7 @@ module "linux_bastion_vm" {
   virtual_machine_admin_username           = "ubuntu"
   virtual_machine_network_interface_ids    = [module.bastion_vm_nic.network_interface_id]
   virtual_machine_admin_ssh_key_username   = "ubuntu"
-  virtual_machine_admin_ssh_key_public_key = file("~/.ssh/id_rsa.pub")
+  virtual_machine_admin_ssh_key_public_key = file("./id_rsa.pub")
 
   os_disk = {
     "disk1" = {
