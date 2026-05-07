@@ -77,6 +77,18 @@ To deploy the infrastructure locally:
 
 Note: Ensure the `backend.hcl` and `terraform.tfvars` files are configured with appropriate values for your Azure environment.
 
+## CI/CD Security Scan
+
+The repository includes a GitHub Actions workflow that runs a TFSec security scan before Terraform planning. The workflow:
+
+- initializes Terraform for the selected environment
+- downloads the TFSec Linux binary
+- scans the `code/` directory for Terraform security issues
+- generates SARIF output as `tfsec.sarif`
+- uploads the SARIF report using `github/codeql-action/upload-sarif@v4`
+
+This gives you GitHub Security tab visibility for Terraform security findings and ensures security scanning occurs before the plan stage.
+
 ## Tagging Enforcement
 
 Tagging is enforced through Terraform variables and module configurations:
