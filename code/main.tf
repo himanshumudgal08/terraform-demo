@@ -70,8 +70,8 @@ module "bastion_nsg" {
 }
 
 module "bastion_subnet_nsg_association" {
-  source = "./modules/subnet_network_security_group_association"
-  subnet_id                 = module.subnet_01.subnet_id
+  source = "../modules/subnet_network_security_group_association"
+  network_security_group_association_subnet_id                 = module.subnet_01.subnet_id
   network_security_group_id = module.bastion_nsg.network_security_group_id
 }
 
