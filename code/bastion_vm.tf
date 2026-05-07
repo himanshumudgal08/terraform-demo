@@ -38,30 +38,6 @@ module "bastion_vm_nic" {
   )
 }
 
-module "vm_nsg" {
-  source                                                = "../modules/network_security_group"
-  network_security_group_name                           = "vm-${local.common_name}-001-nsg"
-  resource_group_location                               = module.resource_group.resource_group_location
-  resource_group_name                                   = module.resource_group.resource_group_name
-  network_security_rule_name                            = var.network_security_rule_name
-  network_security_rule_priority                        = var.network_security_rule_priority
-  network_security_rule_direction                       = var.network_security_rule_direction
-  network_security_rule_access                          = var.network_security_rule_access
-  network_security_rule_protocol                        = var.network_security_rule_protocol
-  network_security_rule_source_port_range               = var.network_security_rule_source_port_range
-  network_security_rule_destination_port_range          = var.network_security_rule_destination_port_range
-  network_security_group_source_address_prefix          = var.network_security_group_source_address_prefix
-  network_security_rule_destination_address_prefix      = var.network_security_rule_destination_address_prefix
-  network_security_group_tags = merge(
-    var.common_tags_primary,
-    {
-      Name          = "vmvm-${local.common_name}-001-nsg"
-      resource_type = "Network Security Group"
-    }
-  )
-
-}
-
 module "linux_bastion_vm" {
   source                                   = "../modules/linux_virtual_machine"
   virtual_machine_name                     = "bastionvm-${local.common_name}-001"
