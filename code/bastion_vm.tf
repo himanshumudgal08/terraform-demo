@@ -13,9 +13,7 @@ module "bastion_public_ip" {
     {
       Name          = "bastionpip-${local.common_name}-001"
       resource_type = "Network Interface"
-    }
-  )
-  monitor_diagnostic_setting_log_analytics_workspace_id = null
+    }  )
 }
 
 module "bastion_vm_nic" {

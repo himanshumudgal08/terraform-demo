@@ -56,4 +56,6 @@ network_security_rule_destination_address_prefix = ["*", "*"]
 ####################3
 # storage_account_account_tier             = "Standard"
 # storage_account_account_replication_type = "RAGRS"
+storage_account_network_rules_ip_rules = []
+
 # #############################################################################################################

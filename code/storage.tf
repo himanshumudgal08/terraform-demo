@@ -19,7 +19,7 @@ module "storage_account_network_rules" {
   source                                       = "../modules/storage_account_network_rules"
   storage_account_id                           = module.storage_account.storage_account_id
   storage_account_network_rules_default_action = "Deny"
-  storage_account_network_rules_ip_rules       = ["49.47.69.70"]
+  storage_account_network_rules_ip_rules       = var.storage_account_network_rules_ip_rules
   virtual_network_subnet_ids                   = [module.subnet_02.subnet_id]
   storage_account_network_rules_bypass         = ["AzureServices"]
   private_link_access                          = []

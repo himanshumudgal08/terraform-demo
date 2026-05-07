@@ -119,3 +119,8 @@ variable "network_security_rule_destination_address_prefix" {
 #   type        = string
 #   description = "Defines the type of replication to use for this storage account."
 # }
+
+variable "storage_account_network_rules_ip_rules" {
+  type        = list(string)
+  description = "A list of IP addresses in CIDR format to allow access to the storage account when the default action is set to Deny."
+}
