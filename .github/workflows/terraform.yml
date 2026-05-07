@@ -121,6 +121,12 @@ jobs:
           name: tfplan-${{ matrix.env }}
           path: .
 
+      - name: Terraform Init
+        working-directory: code
+        run: |
+          terraform init \
+            -backend-config=env/${{ matrix.env }}/backend.hcl
+
       - name: Apply Terraform
         working-directory: code
         run: |
