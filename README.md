@@ -2,6 +2,48 @@
 
 This repository contains Terraform configurations for deploying Azure infrastructure, including a bastion virtual machine, networking components, and storage resources. The setup is modular and supports multiple environments (dev, uat, prod).
 
+## Directory Structure
+
+```
+devops-terraform-task/
+├── .github/
+│   └── workflows/
+│       ├── terraform.yml    # GitHub Actions workflow for CI/CD
+├── code/                    # Main Terraform configuration
+│   ├── main.tf              # Root module configuration
+│   ├── variables.tf         # Variable definitions
+│   ├── locals.tf            # Local value definitions
+│   ├── provider.tf          # Provider configurations
+│   ├── backend.tf           # Backend configuration
+│   ├── versions.tf          # Version constraints
+│   ├── bastion_vm.tf        # Bastion VM configuration
+│   ├── storage.tf           # Storage resources
+│   └── env/                 # Environment-specific configs (placeholder)
+├── env/                     # Environment configurations
+│   ├── dev/
+│   │   ├── backend.hcl      # Dev backend config
+│   │   └── terraform.tfvars # Dev variables
+│   ├── uat/
+│   │   ├── backend.hcl      # UAT backend config
+│   │   └── terraform.tfvars # UAT variables
+│   └── prod/
+│       ├── backend.hcl      # Prod backend config
+│       └── terraform.tfvars # Prod variables
+├── modules/                 # Reusable Terraform modules
+│   ├── linux_virtual_machine/
+│   ├── network_interface/
+│   ├── network_security_group/
+│   ├── public_ip/
+│   ├── resource_group/
+│   ├── storage_account/
+│   ├── storage_account_container/
+│   ├── storage_account_network_rules/
+│   ├── subnet/
+│   ├── subnet_network_security_group_association/
+│   └── vnet/
+└── README.md               
+```
+
 ## Architecture
 
 The infrastructure is designed to provision a secure Azure environment with the following key components:
@@ -88,6 +130,17 @@ The repository includes a GitHub Actions workflow that runs a TFSec security sca
 - uploads the SARIF report using `github/codeql-action/upload-sarif@v4`
 
 This gives you GitHub Security tab visibility for Terraform security findings and ensures security scanning occurs before the plan stage.
+
+## Manual Approval for Apply
+
+The GitHub Actions workflow includes manual approval for the apply stage to ensure changes are reviewed before deployment. The apply job is configured with `environment: ${{ matrix.env }}`, which can be set up with required reviewers in GitHub repository settings:
+
+1. Go to your repository Settings > Environments
+2. Create environments named `dev`, `uat`, and `prod`
+3. For each environment, add required reviewers under "Environment protection rules"
+4. Enable "Required reviewers" and select team members who must approve deployments
+
+This ensures that Terraform apply operations require manual approval from designated reviewers before proceeding.
 
 ## Tagging Enforcement
 
