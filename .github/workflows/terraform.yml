@@ -75,13 +75,13 @@ jobs:
         run: |
           terraform plan \
             -var-file=env/${{ matrix.env }}/terraform.tfvars \
-            -out=tfplan-${{ matrix.env }}
+            -out=../tfplan-${{ matrix.env }}
 
       - name: Upload plan artifact
         uses: actions/upload-artifact@v4
         with:
           name: tfplan-${{ matrix.env }}
-          path: code/tfplan-${{ matrix.env }}
+          path: tfplan-${{ matrix.env }}
 
   apply:
     needs: plan
@@ -124,5 +124,5 @@ jobs:
       - name: Apply Terraform
         working-directory: code
         run: |
-          terraform apply -auto-approve tfplan-${{ matrix.env }}
+          terraform apply -auto-approve ../tfplan-${{ matrix.env }}
 
