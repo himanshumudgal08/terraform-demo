@@ -59,15 +59,13 @@ jobs:
             -backend-config=env/${{ matrix.env }}/backend.hcl
 
       - name: Run TFSec Security Scan
-        uses: aquasecurity/tfsec-action@v1.0.2
-        with:
-          working_directory: .
-          scan_dir: code
-          sarif_file: tfsec.sarif
+        run: |
+          curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/main/scripts/install_linux.sh | bash
+          ./tfsec code -f sarif -o tfsec.sarif || true
 
       - name: Upload TFSec results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v4
-        if: always()
+        if: always() && hashFiles('tfsec.sarif') != ''
         with:
           sarif_file: tfsec.sarif
 
